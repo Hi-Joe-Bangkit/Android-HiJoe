@@ -69,6 +69,7 @@ dependencies {
     // Tensor Flow Lite
     implementation 'org.tensorflow:tensorflow-lite-support:0.1.0-rc1'
     implementation 'org.tensorflow:tensorflow-lite-metadata:0.1.0-rc1'
+    implementation 'org.tensorflow:tensorflow-lite-gpu:2.2.0'
 
     // Unit Test
     testImplementation 'junit:junit:4.+'

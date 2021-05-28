@@ -19,12 +19,15 @@ class ImageClassification(private val context: Context) {
 
     fun classify(bitmap: Bitmap) {
         val model = PlantDisease.newInstance(context)
-        val resizedBitmap = Bitmap.createScaledBitmap(bitmap, 1, 1, true)
+        val resizedBitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
 
-        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 1, 1, 3), DataType.FLOAT32)
-        val tensorBuffer = TensorImage.fromBitmap(resizedBitmap)
+        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.FLOAT32)
+        val tensorBuffer = TensorImage(DataType.FLOAT32)
+        tensorBuffer.load(resizedBitmap)
         val byteBuffer = tensorBuffer.buffer
         inputFeature0.loadBuffer(byteBuffer)
+
+        Log.v(this.javaClass.simpleName, byteBuffer.toString())
 
         val outputs = model.process(inputFeature0)
         val outputFeature0 = outputs.outputFeature0AsTensorBuffer

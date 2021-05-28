@@ -25,7 +25,7 @@ class ProcessViewModel : ViewModel() {
                 imageClassification.classify(bitmap)
                 _state.postValue(ProcessState.Success(imageClassification.position, imageClassification.maxValue))
             } catch (t: Throwable) {
-                Log.e(this@ProcessViewModel.javaClass.simpleName, t.message.toString())
+                t.printStackTrace()
                 _state.postValue(ProcessState.Error(t.message.toString()))
             }
         }
