@@ -27,7 +27,9 @@ class MainActivity : AppCompatActivity() {
     private fun setupView() {
         with(binding) {
             btnOpenCamera.setOnClickListener {
-                toast("open camera")
+                safeCheckPermission(listOf(Manifest.permission.CAMERA)) {
+                    openCamera()
+                }
             }
             btnOpenGallery.setOnClickListener {
                 if (isSdkHigherThanAndroidQ) {
@@ -39,6 +41,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun openCamera() {
+        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE)
     }
 
     private fun openGallery() {
