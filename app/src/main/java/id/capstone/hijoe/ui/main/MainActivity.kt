@@ -4,18 +4,22 @@ import android.Manifest
 import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import id.capstone.hijoe.R
 import id.capstone.hijoe.databinding.ActivityMainBinding
+import id.capstone.hijoe.util.BitmapUtil.createBitmapFromUri
 import id.capstone.hijoe.util.PermissionUtil.isSdkHigherThanAndroidQ
 import id.capstone.hijoe.util.PermissionUtil.safeCheckPermission
 import id.capstone.hijoe.util.toast
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+
+    private lateinit var bitmap: Bitmap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,12 +74,12 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == Activity.RESULT_OK) {
-            when(resultCode) {
+            when(requestCode) {
                 CAMERA_REQUEST_CODE -> {
-                    // todo: get camera bitmap
+                    bitmap = data?.extras?.get("data") as Bitmap
                 }
                 GALLERY_REQUEST_CODE -> {
-                    // todo: get gallery data
+                    bitmap = createBitmapFromUri(data?.data)
                 }
                 else -> {
                     Log.e(this.javaClass.simpleName, "Illegal request code")
