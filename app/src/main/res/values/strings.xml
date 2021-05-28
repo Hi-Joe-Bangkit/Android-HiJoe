@@ -13,4 +13,5 @@
     <string name="desc_camera">Use built-in camera to detect the diseases</string>
     <string name="gallery">Gallery</string>
     <string name="desc_gallery">Upload photo from gallery to detect the diseases</string>
+    <string name="select_image">Select Image</string>
 </resources>
