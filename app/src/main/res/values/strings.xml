@@ -18,4 +18,6 @@
     <string name="desc_access_denied">Please open setting and grant its permission to this application</string>
     <string name="go_to_setting">SETTING</string>
     <string name="cancel">CANCEL</string>
+    <string name="camera_not_found">Camera not found</string>
+    <string name="gallery_not_found">Gallery not found</string>
 </resources>

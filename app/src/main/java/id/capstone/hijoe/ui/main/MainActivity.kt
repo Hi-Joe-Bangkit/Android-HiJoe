@@ -2,6 +2,7 @@ package id.capstone.hijoe.ui.main
 
 import android.Manifest
 import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
@@ -45,7 +46,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun openCamera() {
         val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE)
+        try {
+            startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE)
+        } catch (e: ActivityNotFoundException) {
+            toast(getString(R.string.camera_not_found))
+        }
     }
 
     private fun openGallery() {
@@ -54,7 +59,11 @@ class MainActivity : AppCompatActivity() {
 
         val chooserIntent = Intent.createChooser(getIntent, getString(R.string.select_image))
 
-        startActivityForResult(chooserIntent, GALLERY_REQUEST_CODE)
+        try {
+            startActivityForResult(chooserIntent, GALLERY_REQUEST_CODE)
+        } catch (e: ActivityNotFoundException) {
+            toast(getString(R.string.gallery_not_found))
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
