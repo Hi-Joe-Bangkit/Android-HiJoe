@@ -20,4 +20,5 @@
     <string name="cancel">CANCEL</string>
     <string name="camera_not_found">Camera not found</string>
     <string name="gallery_not_found">Gallery not found</string>
+    <string name="identifying">Please Wait</string>
 </resources>

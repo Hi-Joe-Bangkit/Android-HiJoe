@@ -43,6 +43,9 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
+    //Lottie
+    implementation 'com.airbnb.android:lottie:3.6.1'
+
     // Dexter Permission
     implementation 'com.karumi:dexter:6.2.2'
 
