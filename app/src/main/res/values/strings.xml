@@ -14,4 +14,8 @@
     <string name="gallery">Gallery</string>
     <string name="desc_gallery">Upload photo from gallery to detect the diseases</string>
     <string name="select_image">Select Image</string>
+    <string name="access_denied">Access Denied</string>
+    <string name="desc_access_denied">Please open setting and grant its permission to this application</string>
+    <string name="go_to_setting">SETTING</string>
+    <string name="cancel">CANCEL</string>
 </resources>
