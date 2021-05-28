@@ -7,6 +7,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
+import androidx.annotation.ColorInt
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -41,6 +42,9 @@ object PermissionUtil {
                         p1?.continuePermissionRequest()
                     }
                 })
+                .withErrorListener { toast("Please wait") }
+                .onSameThread()
+                .check()
     }
 
     private fun Context.showDialogOpenSetting() : AlertDialog {
@@ -49,6 +53,7 @@ object PermissionUtil {
         return AlertDialog.Builder(this).apply {
             setTitle(R.string.access_denied)
             setMessage(R.string.desc_access_denied)
+            setCancelable(false)
             setPositiveButton(R.string.go_to_setting) { _, _ ->
                 val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
                 intent.data = Uri.fromParts("package", pkg, null)
@@ -57,6 +62,14 @@ object PermissionUtil {
             setNegativeButton(R.string.cancel) { dialog, _ ->
                 dialog.dismiss()
             }
-        }.create()
+        }.create().apply {
+            val positiveButtonColor = resources.getColor(R.color.black, null)
+            val negativeButtonColor = resources.getColor(R.color.gray, null)
+
+            setOnShowListener {
+                this.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(positiveButtonColor)
+                this.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(negativeButtonColor)
+            }
+        }
     }
 }

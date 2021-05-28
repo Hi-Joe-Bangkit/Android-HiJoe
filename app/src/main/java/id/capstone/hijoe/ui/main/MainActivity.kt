@@ -1,5 +1,6 @@
 package id.capstone.hijoe.ui.main
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +9,8 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import id.capstone.hijoe.R
 import id.capstone.hijoe.databinding.ActivityMainBinding
+import id.capstone.hijoe.util.PermissionUtil.isSdkHigherThanAndroidQ
+import id.capstone.hijoe.util.PermissionUtil.safeCheckPermission
 import id.capstone.hijoe.util.toast
 
 class MainActivity : AppCompatActivity() {
@@ -27,7 +30,13 @@ class MainActivity : AppCompatActivity() {
                 toast("open camera")
             }
             btnOpenGallery.setOnClickListener {
-                toast("open gallery")
+                if (isSdkHigherThanAndroidQ) {
+                    openGallery()
+                } else {
+                    safeCheckPermission(listOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                        openGallery()
+                    }
+                }
             }
         }
     }
@@ -36,11 +45,7 @@ class MainActivity : AppCompatActivity() {
         val getIntent = Intent(Intent.ACTION_GET_CONTENT)
         getIntent.type = "image/*"
 
-        val pickIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        pickIntent.type = "image/*"
-
         val chooserIntent = Intent.createChooser(getIntent, getString(R.string.select_image))
-        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, arrayListOf(pickIntent))
 
         startActivityForResult(chooserIntent, GALLERY_REQUEST_CODE)
     }
