@@ -11,6 +11,8 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import id.capstone.hijoe.R
 import id.capstone.hijoe.databinding.ActivityMainBinding
+import id.capstone.hijoe.ui.process.ProcessActivity
+import id.capstone.hijoe.ui.process.ProcessActivity.Companion.BITMAP_KEY
 import id.capstone.hijoe.util.BitmapUtil.createBitmapFromUri
 import id.capstone.hijoe.util.PermissionUtil.isSdkHigherThanAndroidQ
 import id.capstone.hijoe.util.PermissionUtil.safeCheckPermission
@@ -77,9 +79,17 @@ class MainActivity : AppCompatActivity() {
             when(requestCode) {
                 CAMERA_REQUEST_CODE -> {
                     bitmap = data?.extras?.get("data") as Bitmap
+
+                    val intent = Intent(this, ProcessActivity::class.java)
+                    intent.putExtra(BITMAP_KEY, bitmap)
+                    startActivity(intent)
                 }
                 GALLERY_REQUEST_CODE -> {
                     bitmap = createBitmapFromUri(data?.data)
+
+                    val intent = Intent(this, ProcessActivity::class.java)
+                    intent.putExtra(BITMAP_KEY, bitmap)
+                    startActivity(intent)
                 }
                 else -> {
                     Log.e(this.javaClass.simpleName, "Illegal request code")

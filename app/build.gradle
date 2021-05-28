@@ -43,6 +43,23 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
+    //Okhttp interceptor
+    implementation 'com.squareup.okhttp3:okhttp:4.2.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
+
+    //Retrofit & Gson
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.6.1"
+
+    //Kotlin Coroutines - for asyncronus
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2"
+
+    //ViewModel and Live Data
+    implementation 'android.arch.lifecycle:extensions:2.0.0'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+
     //Lottie
     implementation 'com.airbnb.android:lottie:3.6.1'
 
