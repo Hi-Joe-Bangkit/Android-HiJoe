@@ -5,11 +5,7 @@ import android.content.SharedPreferences
 import com.google.gson.Gson
 import javax.inject.Inject
 
-class Session
-@Inject constructor(
-        context: Context,
-        private val gson: Gson
-) {
+class Session(context: Context) {
     private val sp: SharedPreferences by lazy {
         context.getSharedPreferences(SESSION_NAME, Context.MODE_PRIVATE)
     }

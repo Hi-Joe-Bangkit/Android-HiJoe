@@ -22,7 +22,7 @@ object DataModule {
 
     @Singleton
     @Provides
-    fun provideSession(@ApplicationContext context: Context, gson: Gson) : Session {
-        return Session(context, gson)
+    fun provideSession(@ApplicationContext context: Context) : Session {
+        return Session(context)
     }
 }
