@@ -7,8 +7,10 @@ import id.capstone.hijoe.ml.PlantDisease
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
+import javax.inject.Inject
 
-class ImageClassification(private val context: Context) {
+class ImageClassification
+@Inject constructor(private val context: Context) {
     private var _position = -1
     private var _maxValue = -1.0f
 

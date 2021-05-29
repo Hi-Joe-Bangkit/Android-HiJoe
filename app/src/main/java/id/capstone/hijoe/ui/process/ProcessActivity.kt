@@ -5,7 +5,9 @@ import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
+import dagger.hilt.android.AndroidEntryPoint
 import id.capstone.hijoe.R
 import id.capstone.hijoe.databinding.ActivityProcessBinding
 import id.capstone.hijoe.domain.model.Plant
@@ -14,6 +16,7 @@ import id.capstone.hijoe.ui.result.ResultActivity
 import id.capstone.hijoe.ui.result.ResultActivity.Companion.PLANT_DATA_KEY
 import id.capstone.hijoe.util.extension.toast
 
+@AndroidEntryPoint
 class ProcessActivity : AppCompatActivity() {
     private val TAG = this.javaClass.simpleName
 
@@ -21,9 +24,7 @@ class ProcessActivity : AppCompatActivity() {
 
     private lateinit var bitmap: Bitmap
 
-    private val processViewModel: ProcessViewModel by lazy {
-        ViewModelProvider(this).get(ProcessViewModel::class.java)
-    }
+    private val processViewModel: ProcessViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
