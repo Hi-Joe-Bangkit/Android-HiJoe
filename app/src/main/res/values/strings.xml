@@ -31,4 +31,7 @@
     <string name="dummy_solution">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sodales ipsum vitae magna suscipit ornare.</string>
     <string name="attention">attention</string>
     <string name="desc_under50percent">The result accuracy is under 50%. Be wise to use the information</string>
+    <string name="desc_tflite_error">Something went wrong in our prediction system. Try to use another image</string>
+    <string name="desc_network_error">Seems like you\'re offline now. Please check your connection</string>
+    <string name="desc_unknown_error">Something went wrong. We are still looking for the cause. Please be patien</string>
 </resources>
