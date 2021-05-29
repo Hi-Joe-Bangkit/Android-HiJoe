@@ -6,12 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import id.capstone.hijoe.abstraction.BaseDialogFragment
 import id.capstone.hijoe.databinding.FragmentDialogAttentionBinding
+import id.capstone.hijoe.util.viewLifecycle
 
 class AttentionDialog(
         private val params: Params
 ) : BaseDialogFragment() {
 
-    private lateinit var binding: FragmentDialogAttentionBinding
+    private var binding: FragmentDialogAttentionBinding by viewLifecycle()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentDialogAttentionBinding.inflate(inflater, container, false)

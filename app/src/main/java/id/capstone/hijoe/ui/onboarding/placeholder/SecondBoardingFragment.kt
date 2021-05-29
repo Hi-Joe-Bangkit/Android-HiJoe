@@ -8,10 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import id.capstone.hijoe.databinding.FragmentSecondBoardingBinding
 import id.capstone.hijoe.ui.onboarding.listener.OnClickBoardingListener
+import id.capstone.hijoe.util.viewLifecycle
 
 class SecondBoardingFragment : Fragment() {
 
-    private lateinit var binding: FragmentSecondBoardingBinding
+    private var binding: FragmentSecondBoardingBinding by viewLifecycle()
 
     private lateinit var mOnClickBoardingListener: OnClickBoardingListener
 
