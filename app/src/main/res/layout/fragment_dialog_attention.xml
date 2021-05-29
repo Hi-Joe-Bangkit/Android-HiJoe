@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginStart="30dp"
+    android:layout_marginEnd="32dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="8dp">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvAttentionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Theme.HiJoe.H2"
+            android:textColor="@color/dark_green"
+            tools:text="attention"
+            android:textAllCaps="true"
+            android:gravity="center"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvAttentionContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            tools:text="@string/dummy_solution"
+            android:textColor="@color/gray"
+            android:gravity="center"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAttentionDone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="center"
+            app:backgroundTint="@color/dark_green"
+            android:text="@android:string/ok"/>
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
