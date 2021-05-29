@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -43,6 +45,12 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    //Hilt
+    implementation "com.google.dagger:hilt-android:2.35.1"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.hilt:hilt-work:1.0.0'
+    kapt 'com.google.dagger:hilt-compiler:2.35.1'
 
     //Okhttp interceptor
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
