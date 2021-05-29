@@ -66,8 +66,8 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/btnNextBoarding"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:background="@color/dark_green"
         app:shapeAppearanceOverlay="@style/Theme.HiJoe.CircleImageView"
         app:layout_constraintBottom_toBottomOf="parent"
