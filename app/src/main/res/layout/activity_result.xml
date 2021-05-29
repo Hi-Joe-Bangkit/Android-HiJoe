@@ -49,7 +49,7 @@
                 android:text="@string/accuracy"
                 android:textColor="@color/dark_green"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/circularProgressIndicator"
+                app:layout_constraintBottom_toTopOf="@+id/circularBarDiseaseAccuracy"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/tvDiseaseName"
@@ -57,13 +57,14 @@
                 app:layout_constraintVertical_chainStyle="spread" />
 
             <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/circularProgressIndicator"
+                android:id="@+id/circularBarDiseaseAccuracy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:indeterminate="false"
                 app:indicatorColor="@color/dark_green"
                 app:indicatorSize="56dp"
+                android:max="100"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="h,1:1"
                 app:layout_constraintEnd_toEndOf="@+id/materialTextView7"
@@ -75,15 +76,16 @@
                 tools:progress="65" />
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvDiseaseAccuracy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/dark_green"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/circularProgressIndicator"
-                app:layout_constraintEnd_toEndOf="@+id/circularProgressIndicator"
-                app:layout_constraintStart_toStartOf="@+id/circularProgressIndicator"
-                app:layout_constraintTop_toTopOf="@+id/circularProgressIndicator"
+                app:layout_constraintBottom_toBottomOf="@+id/circularBarDiseaseAccuracy"
+                app:layout_constraintEnd_toEndOf="@+id/circularBarDiseaseAccuracy"
+                app:layout_constraintStart_toStartOf="@+id/circularBarDiseaseAccuracy"
+                app:layout_constraintTop_toTopOf="@+id/circularBarDiseaseAccuracy"
                 tools:text="65%" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -164,7 +166,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/materialTextView14"
                     app:layout_constraintTop_toBottomOf="@+id/materialTextView14"
-                    tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sodales ipsum vitae magna suscipit ornare. Suspendisse consectetur lectus id turpis pulvinar, in hendrerit erat semper." />
+                    tools:text="@string/dummy_desc" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/materialTextView15"
@@ -186,7 +188,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/materialTextView15"
                     app:layout_constraintTop_toBottomOf="@+id/materialTextView15"
-                    tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sodales ipsum vitae magna suscipit ornare." />
+                    tools:text="@string/dummy_solution" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </com.google.android.material.card.MaterialCardView>

@@ -27,4 +27,6 @@
     <string name="description">Description :</string>
     <string name="solution">Solution :</string>
     <string name="home">home</string>
+    <string name="dummy_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sodales ipsum vitae magna suscipit ornare. Suspendisse consectetur lectus id turpis pulvinar, in hendrerit erat semper.</string>
+    <string name="dummy_solution">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sodales ipsum vitae magna suscipit ornare.</string>
 </resources>

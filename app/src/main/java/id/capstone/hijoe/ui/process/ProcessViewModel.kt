@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import id.capstone.hijoe.ml.ImageClassification
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class ProcessViewModel : ViewModel() {
@@ -21,6 +22,8 @@ class ProcessViewModel : ViewModel() {
 
         viewModelScope.launch {
             _state.postValue(ProcessState.Loading)
+            // TODO: 29/05/2021 remove this
+            delay(5000)
             try {
                 imageClassification.classify(bitmap)
                 _state.postValue(ProcessState.Success(imageClassification.position, imageClassification.maxValue))
