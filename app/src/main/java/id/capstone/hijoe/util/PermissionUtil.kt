@@ -8,6 +8,7 @@ import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import id.capstone.hijoe.util.AlertDialogUtil.showDialogOpenSetting
+import id.capstone.hijoe.util.extension.toast
 
 object PermissionUtil {
     val isSdkHigherThanAndroidQ: Boolean

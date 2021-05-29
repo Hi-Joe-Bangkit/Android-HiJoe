@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import id.capstone.hijoe.abstraction.BaseDialogFragment
 import id.capstone.hijoe.databinding.FragmentDialogAttentionBinding
-import id.capstone.hijoe.util.viewLifecycle
+import id.capstone.hijoe.util.extension.viewLifecycle
 
 class AttentionDialog(
         private val params: Params

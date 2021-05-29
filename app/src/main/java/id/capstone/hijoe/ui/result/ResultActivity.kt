@@ -8,8 +8,8 @@ import id.capstone.hijoe.databinding.ActivityResultBinding
 import id.capstone.hijoe.domain.model.Plant
 import id.capstone.hijoe.ui.dialog.AttentionDialog
 import id.capstone.hijoe.ui.main.MainActivity
-import id.capstone.hijoe.util.toExactDouble
-import id.capstone.hijoe.util.toPercentage
+import id.capstone.hijoe.util.extension.toExactDouble
+import id.capstone.hijoe.util.extension.toPercentage
 import kotlin.math.roundToInt
 
 class ResultActivity : AppCompatActivity() {

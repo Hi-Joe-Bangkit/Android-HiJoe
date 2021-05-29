@@ -9,11 +9,10 @@ import androidx.lifecycle.ViewModelProvider
 import id.capstone.hijoe.R
 import id.capstone.hijoe.databinding.ActivityProcessBinding
 import id.capstone.hijoe.domain.model.Plant
-import id.capstone.hijoe.ml.PlantDisease
 import id.capstone.hijoe.ui.main.MainActivity
 import id.capstone.hijoe.ui.result.ResultActivity
 import id.capstone.hijoe.ui.result.ResultActivity.Companion.PLANT_DATA_KEY
-import id.capstone.hijoe.util.toast
+import id.capstone.hijoe.util.extension.toast
 
 class ProcessActivity : AppCompatActivity() {
     private val TAG = this.javaClass.simpleName

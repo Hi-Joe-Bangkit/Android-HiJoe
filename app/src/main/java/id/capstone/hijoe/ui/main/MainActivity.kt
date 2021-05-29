@@ -17,7 +17,7 @@ import id.capstone.hijoe.ui.process.ProcessActivity.Companion.BITMAP_KEY
 import id.capstone.hijoe.util.BitmapUtil.createBitmapFromUri
 import id.capstone.hijoe.util.PermissionUtil.isSdkHigherThanAndroidQ
 import id.capstone.hijoe.util.PermissionUtil.safeCheckPermission
-import id.capstone.hijoe.util.toast
+import id.capstone.hijoe.util.extension.toast
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

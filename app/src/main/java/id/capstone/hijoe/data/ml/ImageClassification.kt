@@ -1,8 +1,9 @@
-package id.capstone.hijoe.ml
+package id.capstone.hijoe.data.ml
 
 import android.content.Context
 import android.graphics.Bitmap
 import android.util.Log
+import id.capstone.hijoe.ml.PlantDisease
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer

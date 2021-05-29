@@ -1,11 +1,10 @@
-package id.capstone.hijoe.util
+package id.capstone.hijoe.util.extension
 
 import android.content.Context
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
 import java.text.NumberFormat
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
@@ -49,13 +48,3 @@ fun <T> Fragment.viewLifecycle(): ReadWriteProperty<Fragment, T> =
                 this.binding = value
             }
         }
-
-fun Float.toExactDouble() : Double {
-    return this.toString().toDouble()
-}
-
-fun Double.toPercentage() : String {
-    val numberFormat = NumberFormat.getPercentInstance()
-    numberFormat.minimumFractionDigits = 0
-    return numberFormat.format(this)
-}

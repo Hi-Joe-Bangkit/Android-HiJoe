@@ -2,12 +2,11 @@ package id.capstone.hijoe.ui.process
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import id.capstone.hijoe.ml.ImageClassification
+import id.capstone.hijoe.data.ml.ImageClassification
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
