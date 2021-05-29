@@ -3,8 +3,10 @@ package id.capstone.hijoe.ui.result
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import id.capstone.hijoe.R
 import id.capstone.hijoe.databinding.ActivityResultBinding
 import id.capstone.hijoe.domain.model.Plant
+import id.capstone.hijoe.ui.dialog.AttentionDialog
 import id.capstone.hijoe.ui.main.MainActivity
 import id.capstone.hijoe.util.toExactDouble
 import id.capstone.hijoe.util.toPercentage
@@ -26,6 +28,15 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
+        if (plant.accuracy < 0.5f) {
+            val dialogParam = AttentionDialog.Params(
+                    title = getString(R.string.attention),
+                    content = getString(R.string.desc_under50percent)
+            )
+
+            AttentionDialog(dialogParam).show(supportFragmentManager, null)
+        }
+
         with(binding) {
             val percentage = plant.accuracy.toExactDouble().toPercentage()
 

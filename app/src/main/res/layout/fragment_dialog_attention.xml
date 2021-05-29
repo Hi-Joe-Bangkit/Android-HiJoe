@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             style="@style/Theme.HiJoe.H2"
             android:textColor="@color/dark_green"
-            tools:text="attention"
+            tools:text="@string/attention"
             android:textAllCaps="true"
             android:gravity="center"/>
 
