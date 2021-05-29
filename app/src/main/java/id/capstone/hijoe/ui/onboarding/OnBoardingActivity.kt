@@ -6,14 +6,20 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import dagger.hilt.android.AndroidEntryPoint
 import id.capstone.hijoe.R
+import id.capstone.hijoe.data.local.Session
 import id.capstone.hijoe.databinding.ActivityOnBoardingBinding
 import id.capstone.hijoe.ui.main.MainActivity
 import id.capstone.hijoe.ui.onboarding.listener.OnClickBoardingListener
 import id.capstone.hijoe.ui.onboarding.placeholder.FirstBoardingFragment
 import id.capstone.hijoe.ui.onboarding.placeholder.SecondBoardingFragment
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class OnBoardingActivity : AppCompatActivity(), OnClickBoardingListener {
+
+    @Inject lateinit var session: Session
 
     private lateinit var binding: ActivityOnBoardingBinding
 
@@ -42,6 +48,8 @@ class OnBoardingActivity : AppCompatActivity(), OnClickBoardingListener {
                 binding.onBoardingViewPager.currentItem = position+1
             }
             R.id.btnDoneBoarding -> {
+                session.isFirstTime = false
+
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()

@@ -15,6 +15,7 @@
         android:required="true" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -23,7 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HiJoe"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.result.ResultActivity"></activity>
+        <activity android:name=".ui.result.ResultActivity" />
         <activity android:name=".ui.process.ProcessActivity" />
         <activity
             android:name=".ui.onboarding.OnBoardingActivity"
