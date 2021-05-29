@@ -32,6 +32,12 @@
         <item name="android:textColor">@color/soft_dark</item>
     </style>
 
+    <style name="Theme.HiJoe.H2" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/soft_dark</item>
+    </style>
+
     <style name="Theme.HiJoe.CircleImageView">
         <item name="cornerSize">50%</item>
     </style>

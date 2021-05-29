@@ -21,4 +21,10 @@
     <string name="camera_not_found">Camera not found</string>
     <string name="gallery_not_found">Gallery not found</string>
     <string name="identifying">Please Wait</string>
+    <string name="accuracy">Accuracy</string>
+    <string name="title_detail_information">Detail Information</string>
+    <string name="plant">Plant :</string>
+    <string name="description">Description :</string>
+    <string name="solution">Solution :</string>
+    <string name="home">home</string>
 </resources>

@@ -23,7 +23,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HiJoe"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.process.ProcessActivity"></activity>
+        <activity android:name=".ui.result.ResultActivity"></activity>
+        <activity android:name=".ui.process.ProcessActivity" />
         <activity
             android:name=".ui.onboarding.OnBoardingActivity"
             android:screenOrientation="portrait" />
