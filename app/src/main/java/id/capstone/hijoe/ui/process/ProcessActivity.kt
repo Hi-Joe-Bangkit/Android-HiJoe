@@ -32,7 +32,7 @@ class ProcessActivity : AppCompatActivity() {
 
         bitmap = intent.getParcelableExtra(BITMAP_KEY)!!
 
-        processViewModel.classify(this, bitmap)
+        processViewModel.classify(bitmap)
         observeData()
     }
 
@@ -66,6 +66,7 @@ class ProcessActivity : AppCompatActivity() {
                     finish()
                 }
                 is ProcessViewModel.ProcessState.Loading -> {}
+                is ProcessViewModel.ProcessState.Empty -> {}
             }
         })
     }
