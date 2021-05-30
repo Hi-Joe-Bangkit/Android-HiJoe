@@ -58,7 +58,7 @@ class ProcessViewModel
 //                            }
 //                        }
 
-                // TODO: 30/05/2021 delete this one when end-point is ready 
+                // TODO: 30/05/2021 delete this one when end-point is ready
                 _state.postValue(ProcessState.Success(imageClassification.position, imageClassification.maxValue))
             } catch (t: Throwable) {
                 t.printStackTrace()
