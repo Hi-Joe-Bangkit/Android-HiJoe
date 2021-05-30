@@ -1,18 +1,15 @@
 package id.capstone.hijoe.ui.process
 
-import android.content.Context
 import android.graphics.Bitmap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.scopes.ViewModelScoped
 import id.capstone.hijoe.data.ml.ImageClassification
-import id.capstone.hijoe.data.vo.Result
+import id.capstone.hijoe.data.vo.RequestResult
 import id.capstone.hijoe.domain.usecase.IdentifyUseCase
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -29,12 +26,11 @@ class ProcessViewModel
 
     fun classify(bitmap: Bitmap?) {
         if (bitmap == null) {
-            _state.postValue(ProcessState.Error("Empty image"))
+            _state.postValue(ProcessState.Error(RequestResult.NOT_DEFINED))
             return
         }
 
         viewModelScope.launch {
-            _state.postValue(ProcessState.Loading)
             // TODO: 29/05/2021 remove this
             delay(5000)
             try {
@@ -57,7 +53,7 @@ class ProcessViewModel
 //                                    }
 //                                }
 //                                is Result.Error -> {
-//                                    _state.postValue(ProcessState.Error(value.cause.name))
+//                                    _state.postValue(ProcessState.Error(value.cause))
 //                                }
 //                            }
 //                        }
@@ -65,7 +61,7 @@ class ProcessViewModel
                 _state.postValue(ProcessState.Success(imageClassification.position, imageClassification.maxValue))
             } catch (t: Throwable) {
                 t.printStackTrace()
-                _state.postValue(ProcessState.Error(t.message.toString()))
+                _state.postValue(ProcessState.Error(RequestResult.TENSOR_FLOW_ERROR))
             }
         }
     }
@@ -75,8 +71,7 @@ class ProcessViewModel
                 val position: Int,
                 val accuracy: Float
         ) : ProcessState()
-        data class Error(val message: String) : ProcessState()
-        object Loading : ProcessState()
+        data class Error(val cause: RequestResult) : ProcessState()
         object Empty : ProcessState()
     }
 }

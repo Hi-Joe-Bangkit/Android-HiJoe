@@ -34,4 +34,5 @@
     <string name="desc_tflite_error">Something went wrong in our prediction system. Try to use another image</string>
     <string name="desc_network_error">Seems like you\'re offline now. Please check your connection</string>
     <string name="desc_unknown_error">Something went wrong. We are still looking for the cause. Please be patien</string>
+    <string name="desc_empty_data">We cannot find information about your plant disease</string>
 </resources>

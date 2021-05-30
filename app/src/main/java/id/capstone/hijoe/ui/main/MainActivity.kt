@@ -30,16 +30,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        handleIntentAction()
         setupView()
-    }
-
-    private fun handleIntentAction() {
-        val action = intent.action
-
-        if (action.isNullOrEmpty()) return
-
-        showErrorDialog(action)
     }
 
     private fun setupView() {
@@ -83,31 +74,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showErrorDialog(action: String?) {
-        val attentionParams = when(action) {
-            TENSOR_FLOW_LITE_ERROR -> {
-                AttentionDialog.Params(
-                        title = getString(R.string.attention),
-                        content = getString(R.string.desc_tflite_error)
-                )
-            }
-            NETWORK_ERROR -> {
-                AttentionDialog.Params(
-                        title = getString(R.string.attention),
-                        content = getString(R.string.desc_network_error)
-                )
-            }
-            else -> {
-                AttentionDialog.Params(
-                        title = getString(R.string.attention),
-                        content = getString(R.string.desc_unknown_error)
-                )
-            }
-        }
-
-        AttentionDialog(attentionParams).show(supportFragmentManager, null)
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -121,7 +87,6 @@ class MainActivity : AppCompatActivity() {
                     bundle.putByteArray(BITMAP_KEY, bitmap.toByteArray())
                     intent.putExtras(bundle)
                     startActivity(intent)
-                    finish()
                 }
                 GALLERY_REQUEST_CODE -> {
                     bitmap = createBitmapFromUri(data?.data)
@@ -131,7 +96,6 @@ class MainActivity : AppCompatActivity() {
                     bundle.putByteArray(BITMAP_KEY, bitmap.toByteArray())
                     intent.putExtras(bundle)
                     startActivity(intent)
-                    finish()
                 }
                 else -> {
                     Log.e(this.javaClass.simpleName, "Illegal request code")
@@ -143,9 +107,5 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val CAMERA_REQUEST_CODE = 1000
         private const val GALLERY_REQUEST_CODE = 1001
-
-        const val TENSOR_FLOW_LITE_ERROR = "action main tflite error"
-        const val NETWORK_ERROR = "action main network error"
-        const val UNKNOWN_ERROR = "action main unknown error"
     }
 }

@@ -7,5 +7,6 @@ enum class RequestResult {
     BAD_RESPONSE,
     SERVER_ERROR,
     NOT_DEFINED,
-    ROOM_ERROR
+    TENSOR_FLOW_ERROR,
+    EMPTY
 }

@@ -9,7 +9,8 @@ import id.capstone.hijoe.databinding.FragmentDialogAttentionBinding
 import id.capstone.hijoe.util.extension.viewLifecycle
 
 class AttentionDialog(
-        private val params: Params
+        private val params: Params,
+        private val onSubmit: (() -> Unit)? = null
 ) : BaseDialogFragment() {
 
     private var binding: FragmentDialogAttentionBinding by viewLifecycle()
@@ -25,7 +26,10 @@ class AttentionDialog(
         with(binding) {
             tvAttentionTitle.text = params.title
             tvAttentionContent.text = params.content
-            btnAttentionDone.setOnClickListener { dismiss() }
+            btnAttentionDone.setOnClickListener {
+                onSubmit?.let { function -> function() }
+                dismiss()
+            }
         }
     }
 

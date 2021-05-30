@@ -2,15 +2,16 @@ package id.capstone.hijoe.ui.process
 
 import android.content.Intent
 import android.graphics.Bitmap
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModelProvider
+import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import id.capstone.hijoe.R
+import id.capstone.hijoe.data.vo.RequestResult
 import id.capstone.hijoe.databinding.ActivityProcessBinding
 import id.capstone.hijoe.domain.model.Plant
+import id.capstone.hijoe.ui.dialog.AttentionDialog
 import id.capstone.hijoe.ui.main.MainActivity
 import id.capstone.hijoe.ui.result.ResultActivity
 import id.capstone.hijoe.ui.result.ResultActivity.Companion.PLANT_DATA_KEY
@@ -43,7 +44,6 @@ class ProcessActivity : AppCompatActivity() {
         processViewModel.state.observe(this, { state ->
             when(state) {
                 is ProcessViewModel.ProcessState.Success -> {
-                    toast("Done and clean")
                     Log.v(TAG, "accuracy: ${state.accuracy} in position ${state.position}")
 
                     val plant = Plant(
@@ -61,17 +61,48 @@ class ProcessActivity : AppCompatActivity() {
                     finish()
                 }
                 is ProcessViewModel.ProcessState.Error -> {
-                    toast("Done but error")
-                    Log.e(TAG, state.message)
+                    Log.e(TAG, state.cause.name)
 
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                    showErrorDialog(state.cause)
                 }
-                is ProcessViewModel.ProcessState.Loading -> {}
-                is ProcessViewModel.ProcessState.Empty -> {}
+                is ProcessViewModel.ProcessState.Empty -> {
+                    showErrorDialog(RequestResult.EMPTY)
+                }
             }
         })
+    }
+
+    private fun showErrorDialog(cause: RequestResult) {
+        val attentionParams = when(cause) {
+            RequestResult.TENSOR_FLOW_ERROR -> {
+                AttentionDialog.Params(
+                        title = getString(R.string.attention),
+                        content = getString(R.string.desc_tflite_error)
+                )
+            }
+            RequestResult.NO_CONNECTION -> {
+                AttentionDialog.Params(
+                        title = getString(R.string.attention),
+                        content = getString(R.string.desc_network_error)
+                )
+            }
+            RequestResult.EMPTY -> {
+                AttentionDialog.Params(
+                        title = getString(R.string.attention),
+                        content = getString(R.string.desc_empty_data)
+                )
+            }
+            else -> {
+                AttentionDialog.Params(
+                        title = getString(R.string.attention),
+                        content = getString(R.string.desc_unknown_error)
+                )
+            }
+        }
+
+        AttentionDialog(attentionParams) {
+            onBackPressed()
+        }.show(supportFragmentManager, null)
     }
 
     companion object {
