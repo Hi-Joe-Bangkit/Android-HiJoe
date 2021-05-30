@@ -15,6 +15,7 @@ import id.capstone.hijoe.ui.dialog.AttentionDialog
 import id.capstone.hijoe.ui.process.ProcessActivity
 import id.capstone.hijoe.ui.process.ProcessActivity.Companion.BITMAP_KEY
 import id.capstone.hijoe.util.BitmapUtil.createBitmapFromUri
+import id.capstone.hijoe.util.BitmapUtil.toByteArray
 import id.capstone.hijoe.util.PermissionUtil.isSdkHigherThanAndroidQ
 import id.capstone.hijoe.util.PermissionUtil.safeCheckPermission
 import id.capstone.hijoe.util.extension.toast
@@ -116,7 +117,9 @@ class MainActivity : AppCompatActivity() {
                     bitmap = data?.extras?.get("data") as Bitmap
 
                     val intent = Intent(this, ProcessActivity::class.java)
-                    intent.putExtra(BITMAP_KEY, bitmap)
+                    val bundle = Bundle()
+                    bundle.putByteArray(BITMAP_KEY, bitmap.toByteArray())
+                    intent.putExtras(bundle)
                     startActivity(intent)
                     finish()
                 }
@@ -124,7 +127,9 @@ class MainActivity : AppCompatActivity() {
                     bitmap = createBitmapFromUri(data?.data)
 
                     val intent = Intent(this, ProcessActivity::class.java)
-                    intent.putExtra(BITMAP_KEY, bitmap)
+                    val bundle = Bundle()
+                    bundle.putByteArray(BITMAP_KEY, bitmap.toByteArray())
+                    intent.putExtras(bundle)
                     startActivity(intent)
                     finish()
                 }

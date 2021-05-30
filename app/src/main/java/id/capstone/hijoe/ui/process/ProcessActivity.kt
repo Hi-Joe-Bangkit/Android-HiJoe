@@ -14,6 +14,7 @@ import id.capstone.hijoe.domain.model.Plant
 import id.capstone.hijoe.ui.main.MainActivity
 import id.capstone.hijoe.ui.result.ResultActivity
 import id.capstone.hijoe.ui.result.ResultActivity.Companion.PLANT_DATA_KEY
+import id.capstone.hijoe.util.BitmapUtil.toBitmap
 import id.capstone.hijoe.util.extension.toast
 
 @AndroidEntryPoint
@@ -22,7 +23,7 @@ class ProcessActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProcessBinding
 
-    private lateinit var bitmap: Bitmap
+    private var bitmap: Bitmap? = null
 
     private val processViewModel: ProcessViewModel by viewModels()
 
@@ -31,7 +32,8 @@ class ProcessActivity : AppCompatActivity() {
         binding = ActivityProcessBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        bitmap = intent.getParcelableExtra(BITMAP_KEY)!!
+        val bundle = intent.extras ?: Bundle()
+        bitmap = bundle.getByteArray(BITMAP_KEY)?.toBitmap()
 
         processViewModel.classify(bitmap)
         observeData()

@@ -27,7 +27,12 @@ class ProcessViewModel
     val state : LiveData<ProcessState>
         get() = _state
 
-    fun classify(bitmap: Bitmap) {
+    fun classify(bitmap: Bitmap?) {
+        if (bitmap == null) {
+            _state.postValue(ProcessState.Error("Empty image"))
+            return
+        }
+
         viewModelScope.launch {
             _state.postValue(ProcessState.Loading)
             // TODO: 29/05/2021 remove this
