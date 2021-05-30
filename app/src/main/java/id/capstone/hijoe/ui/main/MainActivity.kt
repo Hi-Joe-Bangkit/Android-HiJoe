@@ -74,6 +74,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // TODO: 30/05/2021 use ActivityResultContract
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
