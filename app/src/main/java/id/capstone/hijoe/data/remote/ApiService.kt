@@ -1,10 +1,11 @@
 package id.capstone.hijoe.data.remote
 
 import id.capstone.hijoe.data.remote.response.PlantResponse
-import retrofit2.http.POST
+import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface ApiService {
 
-    @POST("")
-    suspend fun identifyDisease(id: Int) : PlantResponse
+    @GET("{id}")
+    suspend fun identifyDisease(@Path("id") id: Int) : PlantResponse
 }

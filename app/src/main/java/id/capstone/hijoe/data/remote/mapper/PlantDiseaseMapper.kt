@@ -9,11 +9,11 @@ class PlantDiseaseMapper
 @Inject constructor() : BaseMapper<PlantResponse, Plant> {
     override fun mapFromEntity(entity: PlantResponse): Plant {
         return Plant(
-                id = entity.id,
-                plant = entity.plant,
-                disease = entity.disease,
-                desc = entity.desc,
-                solution = entity.solution
+                id = entity.id.toInt(),
+                plant = entity.name,
+                disease = entity.desease,
+                desc = entity.description,
+                solution = entity.treatment
         )
     }
 
