@@ -44,20 +44,10 @@ class ProcessActivity : AppCompatActivity() {
         processViewModel.state.observe(this, { state ->
             when (state) {
                 is ProcessViewModel.ProcessState.Success -> {
-                    Log.v(TAG, "accuracy: ${state.accuracy} in position ${state.position}")
-
-                    // TODO: 30/05/2021 remove this dummy data
-                    val plant = Plant(
-                            id = 0,
-                            plant = "Pepper Bell",
-                            disease = "Bacterial Spot",
-                            desc = getString(R.string.dummy_desc),
-                            solution = getString(R.string.dummy_solution),
-                            accuracy = state.accuracy
-                    )
+                    Log.v(TAG, "accuracy: ${state.data.accuracy}")
 
                     val intent = Intent(this, ResultActivity::class.java)
-                    intent.putExtra(PLANT_DATA_KEY, plant)
+                    intent.putExtra(PLANT_DATA_KEY, state.data)
                     startActivity(intent)
                     finish()
                 }

@@ -8,8 +8,11 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import id.capstone.hijoe.data.ml.ImageClassification
 import id.capstone.hijoe.data.vo.RequestResult
+import id.capstone.hijoe.domain.model.Plant
 import id.capstone.hijoe.domain.usecase.IdentifyUseCase
 import kotlinx.coroutines.delay
+import id.capstone.hijoe.data.vo.Result
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,35 +34,30 @@ class ProcessViewModel
         }
 
         viewModelScope.launch {
-            // TODO: 29/05/2021 remove this
-            delay(5000)
             try {
                 imageClassification.classify(bitmap)
 
-                // TODO: 29/05/2021 uncomment when end-point is ready
-//                val identifyParams = IdentifyUseCase.IdentifyParams(
-//                        id = imageClassification.position
-//                )
-//
-//                identifyUseCase(identifyParams)
-//                        .collect { value ->
-//                            when(value) {
-//                                is Result.Success -> {
-//                                    if (value.data.plant.isEmpty()) {
-//                                        _state.postValue(ProcessState.Empty)
-//                                    } else {
-//                                        value.data.accuracy = imageClassification.maxValue
-//                                        _state.postValue(ProcessState.Success(imageClassification.position, imageClassification.maxValue))
-//                                    }
-//                                }
-//                                is Result.Error -> {
-//                                    _state.postValue(ProcessState.Error(value.cause))
-//                                }
-//                            }
-//                        }
+                // TODO: 29/05/2021 change the id with real id
+                val identifyParams = IdentifyUseCase.IdentifyParams(
+                        id = 1
+                )
 
-                // TODO: 30/05/2021 delete this one when end-point is ready
-                _state.postValue(ProcessState.Success(imageClassification.position, imageClassification.maxValue))
+                identifyUseCase(identifyParams)
+                        .collect { value ->
+                            when(value) {
+                                is Result.Success -> {
+                                    if (value.data.plant.isEmpty()) {
+                                        _state.postValue(ProcessState.Empty)
+                                    } else {
+                                        value.data.accuracy = imageClassification.maxValue
+                                        _state.postValue(ProcessState.Success(value.data))
+                                    }
+                                }
+                                is Result.Error -> {
+                                    _state.postValue(ProcessState.Error(value.cause))
+                                }
+                            }
+                        }
             } catch (t: Throwable) {
                 t.printStackTrace()
                 _state.postValue(ProcessState.Error(RequestResult.TENSOR_FLOW_ERROR))
@@ -68,10 +66,7 @@ class ProcessViewModel
     }
 
     sealed class ProcessState {
-        data class Success(
-                val position: Int,
-                val accuracy: Float
-        ) : ProcessState()
+        data class Success(val data: Plant) : ProcessState()
         data class Error(val cause: RequestResult) : ProcessState()
         object Empty : ProcessState()
     }

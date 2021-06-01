@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Hi Joe</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="onboard_main_1">Detect Your Plant Disease</string>
     <string name="onboard_normal_1">through Smartphone</string>
     <string name="onboard_main_2">One Click Only</string>
