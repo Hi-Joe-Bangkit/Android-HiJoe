@@ -11,7 +11,7 @@ class PlantDiseaseMapper
         return Plant(
                 id = entity.id.toInt(),
                 plant = entity.name,
-                disease = entity.desease,
+                disease = entity.disease,
                 desc = entity.description,
                 solution = entity.treatment
         )

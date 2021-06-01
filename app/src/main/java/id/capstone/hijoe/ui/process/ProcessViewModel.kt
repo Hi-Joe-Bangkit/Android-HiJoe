@@ -37,9 +37,8 @@ class ProcessViewModel
             try {
                 imageClassification.classify(bitmap)
 
-                // TODO: 29/05/2021 change the id with real id
                 val identifyParams = IdentifyUseCase.IdentifyParams(
-                        id = 1
+                        id = imageClassification.position
                 )
 
                 identifyUseCase(identifyParams)
