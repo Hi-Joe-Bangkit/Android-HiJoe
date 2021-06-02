@@ -87,7 +87,12 @@ class MainActivity : AppCompatActivity() {
                     val bundle = Bundle()
                     bundle.putByteArray(BITMAP_KEY, bitmap.toByteArray())
                     intent.putExtras(bundle)
-                    startActivity(intent)
+
+                    try {
+                        startActivity(intent)
+                    } catch (t: Throwable) {
+                        toast(getString(R.string.error_big_image))
+                    }
                 }
                 GALLERY_REQUEST_CODE -> {
                     bitmap = createBitmapFromUri(data?.data)
@@ -96,7 +101,12 @@ class MainActivity : AppCompatActivity() {
                     val bundle = Bundle()
                     bundle.putByteArray(BITMAP_KEY, bitmap.toByteArray())
                     intent.putExtras(bundle)
-                    startActivity(intent)
+
+                    try {
+                        startActivity(intent)
+                    } catch (t: Throwable) {
+                        toast(getString(R.string.error_big_image))
+                    }
                 }
                 else -> {
                     Log.e(this.javaClass.simpleName, "Illegal request code")

@@ -3,10 +3,13 @@ package id.capstone.hijoe.data.ml
 import android.content.Context
 import android.graphics.Bitmap
 import android.util.Log
-import id.capstone.hijoe.ml.PlantDisease
+import id.capstone.hijoe.ml.AutoModel2PlantModel
 import org.tensorflow.lite.DataType
+import org.tensorflow.lite.support.common.TensorProcessor
+import org.tensorflow.lite.support.common.ops.NormalizeOp
+import org.tensorflow.lite.support.image.ImageProcessor
 import org.tensorflow.lite.support.image.TensorImage
-import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
+import org.tensorflow.lite.support.image.ops.ResizeOp
 import javax.inject.Inject
 
 class ImageClassification
@@ -21,22 +24,31 @@ class ImageClassification
         get() = _maxValue
 
     fun classify(bitmap: Bitmap) {
-        val model = PlantDisease.newInstance(context)
-        val resizedBitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
+        val probabilityProcessor =
+                TensorProcessor.Builder()
+                        .add(NormalizeOp(0f, 255f))
+                        .build()
 
-        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.FLOAT32)
-        val tensorBuffer = TensorImage(DataType.FLOAT32)
-        tensorBuffer.load(resizedBitmap)
-        val byteBuffer = tensorBuffer.buffer
-        inputFeature0.loadBuffer(byteBuffer)
+        val imageProcessor =
+                ImageProcessor.Builder()
+                        .add(ResizeOp(227, 227, ResizeOp.ResizeMethod.BILINEAR))
+                        .build()
 
-        Log.v(this.javaClass.simpleName, byteBuffer.toString())
+        var tensorImage = TensorImage(DataType.FLOAT32)
+        tensorImage.load(bitmap)
+        tensorImage = imageProcessor.process(tensorImage)
 
-        val outputs = model.process(inputFeature0)
+        val model = AutoModel2PlantModel.newInstance(context)
+
+        Log.v(this.javaClass.simpleName, tensorImage.tensorBuffer.buffer.toString())
+
+        val outputs = model.process(probabilityProcessor.process(tensorImage.tensorBuffer))
         val outputFeature0 = outputs.outputFeature0AsTensorBuffer
 
-        for (accuracy in outputFeature0.floatArray) {
-            Log.v(this.javaClass.simpleName, accuracy.toString())
+        Log.v(this.javaClass.simpleName, "${outputFeature0.floatArray.size}")
+
+        for (index in outputFeature0.floatArray.indices) {
+            Log.v(this.javaClass.simpleName, "$index -> ${outputFeature0.floatArray[index]}")
         }
 
         _position = getHighestAccuracyPosition(outputFeature0.floatArray)

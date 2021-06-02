@@ -17,7 +17,7 @@ object BitmapUtil {
         val stream = ByteArrayOutputStream()
         this.compress(
                 Bitmap.CompressFormat.JPEG,
-                100,
+                80,
                 stream
         )
         return stream.toByteArray()
