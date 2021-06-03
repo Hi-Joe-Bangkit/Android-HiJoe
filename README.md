@@ -1,7 +1,7 @@
 # Android-HiJoe
 This project is about detecting disease in vegetable plant using Machine Learning. Farthermore, this app will serve data about detected disease description as well as its cure.
 
-<a href="https://drive.google.com/file/d/1Sp_osVybWaueGMIom-q9MLCS06EgYsRn/view?usp=sharing"><img src="https://img.shields.io/badge/HI--JOE-v1.0-brightgreen" alt="Hi-Joe"/></a>
+<a href="https://drive.google.com/file/d/1Sp_osVybWaueGMIom-q9MLCS06EgYsRn/view?usp=sharing"><img src="https://img.shields.io/badge/DOWNLOAD%20APK-v1.0-brightgreen" alt="Hi-Joe"/></a> <br/>
 <a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-v3.9.4-yellow" alt="Python"/></a>
 <a href="https://www.tensorflow.org/"><img src="https://img.shields.io/badge/tensorflow-v2.5-orange" alt="TensorFlow"/></a>
 <a href="https://kotlinlang.org/"><img src="https://img.shields.io/badge/kotlin-v1.4.21-blue" alt="Kotlin"/></a>
@@ -23,6 +23,8 @@ This project is about detecting disease in vegetable plant using Machine Learnin
 6. Wait and check the accuracy in every epoch
 7. Save the data in Keras Model (*.h5)
 8. Convert the Keras Model into Tensorflow lite model (*.tflite)
+
+[Sample Code](https://drive.google.com/file/d/1hdLJeEZV6HEeyOUUYhq30znCbmRMz9Jf/view?usp=sharing)
 
 ### Android
 1. Create new android project
