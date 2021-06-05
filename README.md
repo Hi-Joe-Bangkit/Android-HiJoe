@@ -25,13 +25,6 @@ This project is about detecting disease in vegetable plant using Machine Learnin
 4. Setup for http request (This project use Retrofit2)
 5. Send the id which is earned from ML process to API with GET method
 
-### Cloud Computing
-1. Activate firestore in GCP
-2. Add new collection and data within
-3. Create and API handler
-4. Deploy the API handler to GCP
-5. Configure the  API with the firestore
-
 
 ## WANT TO KNOW THE CODE?
 * You can clone this repository using git command or git GUI
